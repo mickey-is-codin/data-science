@@ -8,5 +8,5 @@ Pipfile*
 *.txt
 *.logs
 data/
-DeepLearning/
 .ipynb_checkpoints/
+logs/
