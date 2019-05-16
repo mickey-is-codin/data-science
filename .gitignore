@@ -6,6 +6,7 @@ Pipfile*
 *.png
 *.JPG
 *.txt
+*.logs
 data/
 DeepLearning/
 .ipynb_checkpoints/
