@@ -28,7 +28,7 @@
 </p>
 
 <img src="images/nosferatu_8x8.png">
-<img src="images/nosferatu_8x8.png">
+<img src="images/nosferatu_preds.png">
 
 <img src="images/2666_8x8.png">
 <img src="images/2666_preds.png">
