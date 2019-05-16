@@ -10,3 +10,5 @@ Pipfile*
 data/
 .ipynb_checkpoints/
 logs/
+
+!DeepLearning/Tensorflow/VisualizingFilters/images/
