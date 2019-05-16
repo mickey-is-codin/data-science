@@ -5,6 +5,7 @@ Pipfile*
 *.jpg
 *.png
 *.JPG
+*.txt
 data/
 DeepLearning/
 .ipynb_checkpoints/
