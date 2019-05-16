@@ -11,4 +11,4 @@ data/
 .ipynb_checkpoints/
 logs/
 
-!DeepLearning/Tensorflow/VisualizingFilters/images/
+!DeepLearning/Tensorflow/VisualizingFilters/images/*
