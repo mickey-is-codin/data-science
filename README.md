@@ -17,7 +17,15 @@
         <li>LOTR</li>
             <p>
                 A data science project that just attempts to mess around with the text 
-                of the 3 Lord of the Rings books. 
+                of the 3 Lord of the Rings books.
+            </p>
+            <p>
+                TODO:
+                <ul>
+                    <li>Try to implement Tensorflow</li>
+                    <li>Look into NLP Toolkit</li>
+                    <li>Sentiment analysis by chapter/character</li>
+                </ul>
             </p>
         <li>Russia</li>
             <p>
@@ -25,11 +33,24 @@
                 as well as to try to follow a series of articles I read between
                 The Atlantic and the OCCRP.
             </p>
+            <p>
+                TODO:
+                <ul>
+                    <li>Not really trying to add much more functionally</li>
+                    <li>As I read more articles I'll include them in the web</li>
+                </ul>
+            </p>
         <li>Yelp</li>
             <p>
                 A data science project inspired by a Joe Rogan podcast trying to 
                 determine whether or not the number of stars given in a review
                 correlates to positivity or negativity of the review.
+            </p>
+            <p>
+                TODO:
+                <ul>
+                    <li>Actual sentiment analysis on reviews with Tensorflow</li>
+                </ul>
             </p>
         <li>Basic Sentdex Tensorflow Tutorials</li>
             <p>
@@ -41,6 +62,12 @@
                 Following a Toward Data Science tutorial for visualizing the
                 weights of a neural network in order to determine if training
                 is effective for the network.
+            </p>
+            <p>
+                TODO:
+                <ul>
+                    <li>Find a way to implement this as boilerplate in other projects</li>
+                </ul>
             </p>
     </ul>
 
