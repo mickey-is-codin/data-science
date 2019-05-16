@@ -23,13 +23,22 @@ def main():
     print("\nBeginning filter visualization program\n")
 
     # Parse command line args
-    if len(sys.argv) == 3:
-        mode = sys.argv[1]
-        image_path = sys.argv[2]
+    if any("--image" in s for s in sys.argv):
+        image_path = sys.argv[sys.argv.index('--image') + 1]
+    elif any("-i" in s for s in sys.argv):
+        image_path = sys.argv[sys.argv.index('-i') + 1]
     else:
-        mode = '--advanced'
         image_path = 'data/2666.jpg'
 
+    if any("--advanced" in s for s in sys.argv) or any("-a" in s for s in sys.argv):
+        mode = 'advanced'
+    else:
+        mode = 'basic'
+
+    if any("--predict" in s for s in sys.argv) or any("-p" in s for s in sys.argv):
+        predict = True
+    else:
+        predict = False
 
     # Get model and create dictionary for its layers
     model = VGG16()
@@ -50,10 +59,10 @@ def main():
 
     basic = False
     advanced = False
-    if mode == '--basic' or mode == '-b':
+    if mode == 'basic' or mode == '-b':
         basic = True
         advanced = False
-    elif mode == '--advanced' or mode == '-a':
+    elif mode == 'advanced' or mode == '-a':
         basic = False
         advanced = True
     else:
@@ -66,9 +75,9 @@ def main():
 
     if advanced:
         # Plot the advanced filters
-        advanced_plot(model, layer_dict, chosen_layer, image_path)
+        advanced_plot(model, layer_dict, chosen_layer, image_path, predict)
 
-def advanced_plot(model, layer_dict, chosen_layer, image_path):
+def advanced_plot(model, layer_dict, chosen_layer, image_path, predict):
 
     viz_model = Model(inputs=model.inputs, outputs=layer_dict[chosen_layer].output)
 
@@ -80,15 +89,15 @@ def advanced_plot(model, layer_dict, chosen_layer, image_path):
     feature_maps = viz_model.predict(image)
 
     # Plotting geometry
-    row_choice_default = 3
+    row_choice_default = 8
     try:
-        n_rows = int(input('Number rows to plot: (default = 3) '))
+        n_rows = int(input('Number rows to plot: (default = 8) '))
     except ValueError:
         n_rows = row_choice_default
 
-    col_choice_default = 3
+    col_choice_default = 8
     try:
-        n_cols = int(input('Number cols to plot: (default = 3) '))
+        n_cols = int(input('Number cols to plot: (default = 8) '))
     except ValueError:
         n_cols = col_choice_default
 
@@ -109,34 +118,35 @@ def advanced_plot(model, layer_dict, chosen_layer, image_path):
     plt.suptitle('Advanced Vizualization of {}'.format(chosen_layer))
     plt.show()
 
-    predictions = model.predict(image)
-    predictions = predictions[0]
+    if predict:
+        predictions = model.predict(image)
+        predictions = predictions[0]
 
-    labels_dict = create_labels_dict()
-    prediction_list = []
+        labels_dict = create_labels_dict()
+        prediction_list = []
 
-    for ix, certainty in enumerate(predictions):
-        if certainty > 0.075:
-            guess = list(labels_dict.values())[ix]
-            print("Classification made!: {}".format(guess))
-            prediction_list.append(guess)
+        for ix, certainty in enumerate(predictions):
+            if certainty > 0.075:
+                guess = list(labels_dict.values())[ix]
+                print("Classification made!: {}".format(guess))
+                prediction_list.append(guess)
 
-    original_image = load_img(image_path)
-    ax = plt.subplot()
-    plt.imshow(original_image)
-    plt.subplots_adjust(right=0.68)
+        original_image = load_img(image_path)
+        ax = plt.subplot()
+        plt.imshow(original_image)
+        plt.subplots_adjust(right=0.68)
 
-    for label_ix, label in enumerate(prediction_list):
-        plt.figtext(
-            0.8,
-            0.25*(label_ix+1),
-            label,
-            horizontalalignment='center'
-        )
+        for label_ix, label in enumerate(prediction_list):
+            plt.figtext(
+                0.8,
+                0.25*(label_ix+1),
+                label,
+                horizontalalignment='center'
+            )
 
-    plt.suptitle('Predictions')
-    plt.axis('off')
-    plt.show()
+        plt.suptitle('Predictions')
+        plt.axis('off')
+        plt.show()
 
 def create_labels_dict(path='data/labels/labels.txt'):
 
