@@ -1,0 +1,7 @@
+Pipfile*
+*.lock
+*.csv
+*.pickle
+data/
+DeepLearning/
+.ipynb_checkpoints/
