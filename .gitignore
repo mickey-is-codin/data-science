@@ -2,6 +2,9 @@ Pipfile*
 *.lock
 *.csv
 *.pickle
+*.jpg
+*.png
+*.JPG
 data/
 DeepLearning/
 .ipynb_checkpoints/
