@@ -27,8 +27,11 @@
     being trained.
 </p>
 
-<img src="images/nosferatu.jpg">
+<img src="images/nosferatu_8x8.jpg">
+<img src="images/nosferatu_8x8.jpg">
 
-<img src="images/2666.jpg">
+<img src="images/2666_8x8.jpg">
+<img src="images/2666_preds.jpg">
 
-<img src="images/poster.png">
+<img src="images/poster_8x8.png">
+<img src="images/poster_preds.png">
