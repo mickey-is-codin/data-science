@@ -9,7 +9,6 @@ Pipfile*
 *.logs
 __pycache__/
 mnist/
-MNIST_data/
 data/
 .ipynb_checkpoints/
 logs/
