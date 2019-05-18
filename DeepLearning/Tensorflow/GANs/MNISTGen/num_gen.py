@@ -52,7 +52,8 @@ def main():
         x_train,
         generator,
         discriminator,
-        adversarial
+        adversarial,
+        img_rows, img_cols
     )
 
 def train(
@@ -60,6 +61,7 @@ def train(
     generator,
     discriminator,
     adversarial,
+    img_rows, img_cols,
     train_steps=2000,
     batch_size=256,
     save_interval=0):
@@ -69,6 +71,7 @@ def train(
     if save_interval > 0:
         noise_input = np.random.uniform(-1.0, 1.0, size=[16, 100])
 
+    print("==Training==")
     for i in range(train_steps):
 
         # The actual data samples
@@ -96,12 +99,63 @@ def train(
 
         a_loss = adversarial.train_on_batch(noise, y)
 
-        print("Epoch: %d: D Network Loss: %.3f Accuracy: %.3f" % (i, d_loss[0], d_loss[1]))
-        print(" Overall A Loss: %.3f Accuracy: %.3f" % (a_loss[0], a_loss[1]))
+        print("Epoch %d:\n\tD Network Loss: %.3f Accuracy: %.3f" % (i, d_loss[0], d_loss[1]))
+        print("\tOverall A Loss: %.3f Accuracy: %.3f" % (a_loss[0], a_loss[1]))
+
+        if (i % 10 == 0):
+            plot_images(
+                x_train,
+                img_rows, img_cols,
+                generator,
+                save=True,
+                fake=True,
+                samples=16,
+                noise=None,
+                step=i+1
+            )
 
     generator.save('trained_generator.model')
     discriminator.save('trained_discriminator.model')
     adversarial.save('trained_adversarial.model')
+
+def plot_images(
+    x_train,
+    img_rows,
+    img_cols,
+    generator,
+    save=True,
+    fake=True,
+    samples=16,
+    noise=None,
+    step=0):
+
+    filename = 'mnist_{}_train_steps.png'.format(step)
+
+    if fake:
+        if noise is None:
+            noise = np.random.uniform(-1.0, 1.0, size=[samples, 100])
+        else:
+            filename = 'mnist_{}.png'.format(step)
+        images = generator.predict(noise)
+    else:
+        i = np.random.randint(0, x_train.shape[0], samples)
+        images = x_train[i, :, :, :]
+
+    plt.figure()
+
+    for i in range(images.shape[0]):
+        plt.subplot(4, 4, i+1)
+        image = images[i, :, :, :]
+        image = np.reshape(image, [img_rows, img_cols])
+        plt.imshow(image, cmap='gray')
+        plt.axis('off')
+    plt.tight_layout()
+    if save:
+        plt.savefig(filename)
+        plt.close('all')
+    else:
+        plt.show()
+
 
 if __name__ == '__main__':
     main()
