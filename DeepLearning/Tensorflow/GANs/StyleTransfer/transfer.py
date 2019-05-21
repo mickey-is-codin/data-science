@@ -6,6 +6,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 import cv2
+import PIL
 
 import tensorflow as tf
 tf.logging.set_verbosity(tf.logging.ERROR)
@@ -134,6 +135,19 @@ def get_grad(g_img_array):
 
     return grad
 
+def postprocess_array(x):
+    # Zero-center by mean pixel
+    if x.shape != (target_width, target_height, 3):
+        x = x.reshape((target_width, target_height, 3))
+    x[..., 0] += 103.939
+    x[..., 1] += 116.779
+    x[..., 2] += 123.68
+    # 'BGR'->'RGB'
+    x = x[..., ::-1]
+    x = np.clip(x, 0, 255)
+    x = x.astype('uint8')
+    return x
+
 tf_session = K.get_session()
 
 c_model = VGG16(include_top=False, weights='imagenet', input_tensor=c_img_array)
@@ -160,7 +174,7 @@ As = get_feature_reps(
 )
 ws = np.ones(len(s_layer_names)) / float(len(s_layer_names))
 
-iterations = 600
+iterations = 10
 
 x_val = g_img0.flatten()
 xopt, fval, info = fmin_l_bfgs_b(
@@ -170,3 +184,8 @@ xopt, fval, info = fmin_l_bfgs_b(
     maxiter=iterations,
     disp=True
 )
+
+x_out = postprocess_array(xopt)
+x_img = PIL.Image.fromarray(x_out)
+x_img.save(generated_path)
+
