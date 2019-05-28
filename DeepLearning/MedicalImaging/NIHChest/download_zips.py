@@ -7,10 +7,10 @@ ssl._create_default_https_context = ssl._create_unverified_context
 
 # URLs for the zip files
 links = [
-    #'https://nihcc.box.com/shared/static/vfk49d74nhbxq3nqjg0900w5nvkorp5c.gz',
-    #'https://nihcc.box.com/shared/static/i28rlmbvmfjbl8p2n3ril0pptcmcu9d1.gz',
-    #'https://nihcc.box.com/shared/static/f1t00wrtdk94satdfb9olcolqx20z2jp.gz',
-    #'https://nihcc.box.com/shared/static/0aowwzs5lhjrceb3qp67ahp0rd1l1etg.gz',
+    'https://nihcc.box.com/shared/static/vfk49d74nhbxq3nqjg0900w5nvkorp5c.gz',
+    'https://nihcc.box.com/shared/static/i28rlmbvmfjbl8p2n3ril0pptcmcu9d1.gz',
+    'https://nihcc.box.com/shared/static/f1t00wrtdk94satdfb9olcolqx20z2jp.gz',
+    'https://nihcc.box.com/shared/static/0aowwzs5lhjrceb3qp67ahp0rd1l1etg.gz',
     'https://nihcc.box.com/shared/static/v5e3goj22zr6h8tzualxfsqlqaygfbsn.gz',
 
     'https://nihcc.box.com/shared/static/asi7ikud9jwnkrnkj99jnpfkjdes7l6l.gz',
@@ -28,7 +28,7 @@ def prog_bar(count, blockSize, totalSize):
     sys.stdout.flush()
 
 for idx, link in enumerate(links):
-    fn = 'data/images/images_%02d.tar.gz' % (idx+5)
+    fn = 'data/images/images_%02d.tar.gz' % (idx+6)
     print('downloading', fn, '...')
     urllib.request.urlretrieve(link, fn, reporthook=prog_bar)  # download the zip file
 
