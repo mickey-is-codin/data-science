@@ -5,5 +5,12 @@ Location to store any kaggle competition projects that I work on. Kaggle competi
 </p>
 
 <p>
-TODO: Include kaggle competition projects from recovered hard drive.
+    TODO: Description of significant findings
 </p>
+
+<h3> Yelp </h3>
+<img src="images/yelp.png">
+<h3> Divvy </h3>
+<img src="images/divvy.png">
+<h3> Electric Motors </h3>
+<img src="images/motors.png">
