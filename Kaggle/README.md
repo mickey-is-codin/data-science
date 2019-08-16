@@ -5,7 +5,7 @@ Location to store any kaggle competition projects that I work on. Kaggle competi
 </p>
 
 <p>
-    TODO: Description of significant findings
+    TODO: Description of significant findings.
 </p>
 
 <h3> Yelp </h3>
