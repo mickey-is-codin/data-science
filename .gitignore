@@ -3,7 +3,6 @@ Pipfile*
 *.csv
 *.pickle
 *.jpg
-*.png
 *.JPG
 *.txt
 *.logs
