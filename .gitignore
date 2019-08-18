@@ -2,8 +2,6 @@ Pipfile*
 *.lock
 *.csv
 *.pickle
-*.jpg
-*.JPG
 *.txt
 *.logs
 *.zip
