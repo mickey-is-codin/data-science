@@ -92,11 +92,9 @@ def main():
 
     print(model.summary())
 
-    model.compile(optimizer="adam", loss=loss)
-
-    epochs=10
-
-    history = model.fit(dataset, epochs=epochs)
+    # model.compile(optimizer="adam", loss=loss)
+    # epochs=10
+    # history = model.fit(dataset, epochs=epochs)
 
 def loss(labels, logits):
     return tf.keras.losses.sparse_categorical_crossentropy(labels, logits, from_logits=True)
